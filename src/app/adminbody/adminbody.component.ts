@@ -9,6 +9,7 @@ import { FormControl, FormGroup, NgForm } from '@angular/forms';
   styleUrls: ['./adminbody.component.css']
 })
 export class AdminbodyComponent {
+
   doctors: Doctor[];
   posts: any;
   doctor: Doctor = new Doctor();
@@ -59,11 +60,33 @@ export class AdminbodyComponent {
     }
   }
 
-  EditDoctor(doctorIndex: number) {
-    this.isEditing[doctorIndex] = !this.isEditing[doctorIndex];
+  EditDoctor(doctor: Doctor, doctorIndex: number) {
+    // Update the doctor object with the new values
+    doctor.doctorName = doctor.doctorName;
+    doctor.doctorSpecialization = doctor.doctorSpecialization
+    doctor.doctorLocation = doctor.doctorSpecialization
+  
+    // Make an API call to update the doctor
+    this.service.updateDoctor(doctor.doctorId, doctor).subscribe(data => {
+      console.log(data);
+      alert("Doctor updated");
+    });
+  
+    // Reset the editing flag
+    this.isEditing[doctorIndex] = false;
+    window.location.reload();
   }
+  
 
-  deleteDoctor(index: any) {
-    this.doctors.splice(index, 1);
+
+  deleteDoctor(index: number) {
+    const deletedDoctor = this.doctors[index];
+  
+    this.service.deleteDoctor(deletedDoctor.doctorId).subscribe(() => {
+      console.log("Doctor deleted");
+      this.doctors.splice(index, 1);
+      window.location.reload();
+    });
   }
+  
 }

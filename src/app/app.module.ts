@@ -19,6 +19,8 @@ import { UserbodyComponent } from './userbody/userbody.component';
 import { UserhomeComponent } from './userhome/userhome.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbaradminComponent } from './navbaradmin/navbaradmin.component';
+import { SidebaradminComponent } from './sidebaradmin/sidebaradmin.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { HttpClientModule } from '@angular/common/http';
     ServicesComponent,
     SidebarComponent,
     UserbodyComponent,
-    UserhomeComponent
+    UserhomeComponent,
+    NavbaradminComponent,
+    SidebaradminComponent
   ],
   imports: [
     BrowserModule,
