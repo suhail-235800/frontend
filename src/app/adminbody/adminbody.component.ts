@@ -61,18 +61,17 @@ export class AdminbodyComponent {
   }
 
   EditDoctor(doctor: Doctor, doctorIndex: number) {
-    // Update the doctor object with the new values
+    
     doctor.doctorName = doctor.doctorName;
     doctor.doctorSpecialization = doctor.doctorSpecialization
-    doctor.doctorLocation = doctor.doctorSpecialization
+    doctor.doctorLocation = doctor.doctorLocation
   
-    // Make an API call to update the doctor
     this.service.updateDoctor(doctor.doctorId, doctor).subscribe(data => {
       console.log(data);
       alert("Doctor updated");
     });
   
-    // Reset the editing flag
+    
     this.isEditing[doctorIndex] = false;
     window.location.reload();
   }
