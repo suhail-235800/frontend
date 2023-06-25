@@ -1,15 +1,11 @@
 
-import { Time } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from './../service/service.service';
 
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
-import { TitleStrategy } from '@angular/router';
-
 
 // import { DatePipe } from '@angular/common';
-import { parse } from "date-fns";
-import { RouterTestingHarness } from '@angular/router/testing';
+
 import { Doctor } from '../domain/Doctor';
 import { AppointmentRequest } from '../domain/AppointmentRequest';
 import { Appointment } from '../domain/Appointment';
