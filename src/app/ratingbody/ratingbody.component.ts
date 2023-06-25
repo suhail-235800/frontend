@@ -62,6 +62,17 @@ export class RatingbodyComponent {
     });
   }
   
-  
+  show: boolean = false;
+  selectedAppointmentIndex: number = -1;
+
+  openpopup(index: number) {
+    this.selectedAppointmentIndex = index;
+    this.show = true;
+  }
+
+  closepopup() {
+    this.selectedAppointmentIndex = -1;
+    this.show = false;
+  }
 
 }

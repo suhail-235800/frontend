@@ -44,7 +44,36 @@
       </div>
       <div class="col align-self-center">
         <div class="d-flex justify-content-center">
-          <button type="button" class="btn btn-success" routerLink="/ratereview">Rate</button>
+          <button type="button" class="btn btn-success" (click)="openpopup(i)">Rate</button>
+        </div>
+      </div>
+      <div class="overlay" *ngIf="show && selectedAppointmentIndex === i">
+        <div class="content">
+          <div class="close" (click)="closepopup()">
+            &times;
+          </div>
+          <div>
+            <div class="rate bg-secondary py-3 text-white mt-3">
+              <div class="rating"> <input type="radio" name="rating" value="5" id="5">
+                <label for="5">☆</label>
+                <input type="radio" name="rating" value="4" id="4">
+                <label for="4">☆</label>
+                <input type="radio" name="rating" value="3" id="3">
+                <label for="3">☆</label>
+                <input type="radio" name="rating" value="2" id="2">
+                <label for="2">☆</label>
+                <input type="radio" name="rating" value="1" id="1">
+                <label for="1">☆</label>
+              </div>
+              <div class="review-box px-4 mt-3">
+                <label for="review"></label>
+                <textarea id="review" class="form-control" rows="3" placeholder="Write your experience"></textarea>
+              </div>
+              <div class="buttons px-4 mt-0">
+                <button class="btn btn-warning btn-block rating-submit">Submit</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

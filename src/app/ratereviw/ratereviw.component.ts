@@ -6,9 +6,37 @@ import { Component } from '@angular/core';
   styleUrls: ['./ratereviw.component.css']
 })
 export class RatereviwComponent {
-  selectedRating: number | null = null;
+  show = false;
 
-  onRatingChange(rating: number) {
-    console.log(rating); // This will output the selected rating as a number
+  openpopup(){
+
+    this.show=true
+
   }
+
+  closepopup(){
+
+    this.show=false
+
+  }
+
+  constructor(){}
+  // ratingValue: string;
+  // reviewValue: string;
+
+  // updateRating(rating: number) {
+  //   this.ratingValue = rating.toString();
+  // }
+
+  // submitForm() {
+  //   console.log('Rating:', this.ratingValue);
+  //   console.log('Review:', this.reviewValue);
+
+  //   // Here you can perform further actions such as submitting the rating and review to a server
+  // }
+  // // selectedRating: number | null = null;
+
+  // // onRatingChange(rating: number) {
+  // //   console.log(rating); // This will output the selected rating as a number
+  // // }
 }

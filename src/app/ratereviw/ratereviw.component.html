@@ -1,15 +1,89 @@
+<div class="col align-self-center">
+
+    <div class="d-flex justify-content-center">
+
+        <button type="button" class="btn btn-success" (click)="openpopup()">Rate</button>
+
+    </div>
+
+</div>
+
+<div class="overlay" *ngIf="show">
+
+    <div class="content">
+
+        <div class="close" (click)="closepopup()">
+
+            &times;
+
+        </div>
+
+        <div>
+
+            <div class="rate bg-secondary py-3 text-white mt-3">
+
+                <div class="rating"> <input type="radio" name="rating" value="5" id="5">
+
+                    <label for="5">☆</label>
+
+                    <input type="radio" name="rating" value="4" id="4">
+
+                    <label for="4">☆</label>
+
+                    <input type="radio" name="rating" value="3" id="3">
+
+                    <label for="3">☆</label>
+
+                    <input type="radio" name="rating" value="2" id="2">
+
+                    <label for="2">☆</label>
+
+                    <input type="radio" name="rating" value="1" id="1">
+
+                    <label for="1">☆</label>
+
+                </div>
+
+                <div class="review-box px-4 mt-3">
+
+                    <label for="review"></label>
+
+                    <textarea id="review" class="form-control" rows="3" placeholder="Write your experience"></textarea>
+
+                </div>
+
+
+
+                <div class="buttons px-4 mt-0">
+
+                    <button class="btn btn-warning btn-block rating-submit">Submit</button>
+
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- <form (ngSubmit)="submitForm()">
 <div class="container">
     <div class="feedback">
         <div class="rating">
-            <input type="radio" name="rating" id="rating-5" value="5">
+            <input type="radio" name="rating" id="rating-5" value="5" [(ngModel)]="ratingValue" (change)="updateRating(5)" [ngModelOptions]="{standalone: true}">
             <label for="rating-5"></label>
-            <input type="radio" name="rating" id="rating-4" value="4">
+            <input type="radio" name="rating" id="rating-4" value="4" [(ngModel)]="ratingValue" (change)="updateRating(4)" [ngModelOptions]="{standalone: true}">
             <label for="rating-4"></label>
-            <input type="radio" name="rating" id="rating-3" value="3">
+            <input type="radio" name="rating" id="rating-3" value="3" [(ngModel)]="ratingValue" (change)="updateRating(3)" [ngModelOptions]="{standalone: true}">
             <label for="rating-3"></label>
-            <input type="radio" name="rating" id="rating-2" value="2">
+            <input type="radio" name="rating" id="rating-2" value="2" [(ngModel)]="ratingValue" (change)="updateRating(2)" [ngModelOptions]="{standalone: true}">
             <label for="rating-2"></label>
-            <input type="radio" name="rating" id="rating-1" value="1">
+            <input type="radio" name="rating" id="rating-1" value="1" [(ngModel)]="ratingValue" (change)="updateRating(1)" [ngModelOptions]="{standalone: true}">
             <label for="rating-1"></label>
             <div class="emoji-wrapper">
                 <div class="emoji">
@@ -173,7 +247,8 @@
             <input type="text" placeholder="Enter review" class="review">
         </div>
         <div class="button">
-            <button class="btn">Submit</button>
+            <button class="btn" [(ngModel)]="reviewValue" >Submit</button>
         </div>
     </div>
 </div>
+</form> -->
