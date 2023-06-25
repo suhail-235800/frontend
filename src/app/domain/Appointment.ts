@@ -3,8 +3,8 @@ import { Time } from "@angular/common";
 export class Appointment{
 
     appointmentId: number;
-    appointmentDate: Date;
-    appointmentTime: Date;
+    appointmentDate: string;
+    appointmentTime: string;
     
     doctorId:number;
     doctorName:string;
@@ -19,11 +19,9 @@ export class Appointment{
         this.doctorName='';
         this.doctorSpecialization='';
         this.doctorLocation='';
-        
         this.appointmentId=0;
-        this.appointmentDate=new Date();
-        this.appointmentTime=new Date();
-
+        this.appointmentDate='';
+        this.appointmentTime = '';
         this.userId=0;
     
     }

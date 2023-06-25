@@ -1,7 +1,21 @@
+
+import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from './../service/service.service';
-import { Doctor } from '../domain/Doctor';
+
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { TitleStrategy } from '@angular/router';
+
+
+// import { DatePipe } from '@angular/common';
+import { parse } from "date-fns";
+import { RouterTestingHarness } from '@angular/router/testing';
+import { Doctor } from '../domain/Doctor';
+import { AppointmentRequest } from '../domain/AppointmentRequest';
+import { Appointment } from '../domain/Appointment';
+
+
+
 
 @Component({
   selector: 'app-userbody',
@@ -21,7 +35,14 @@ export class UserbodyComponent implements OnInit {
   appointmentDate: string;
   appointmentTime: string;
   doctors: Doctor[] = [];
-  posts: any; // Declare 'posts' property
+  requests:AppointmentRequest[]= [];
+  appointment:Appointment = new Appointment();
+  appointmentRequest:AppointmentRequest = new AppointmentRequest();
+  appointments: Appointment[] = [];
+  posts: any;
+  strtime:string;
+  selectedDate: string;
+  selectedTime: string; // Declare 'posts' property
 
   constructor(private service: ServiceService) { }
 
@@ -42,30 +63,35 @@ export class UserbodyComponent implements OnInit {
   }
 
   searchDoctors() {
-    if (this.selectedLocation !== 'default') {
-      if (this.selectedSpecialization !== 'default') {
-        if (this.searchDoctorName !== '') {
-          this.getDoctorsByNameLocSpec(this.searchDoctorName, this.selectedLocation, this.selectedSpecialization);
-        } else {
-          this.getDoctorsByLocandSpec(this.selectedLocation, this.selectedSpecialization);
-        }
-      } else {
-        if (this.searchDoctorName !== '') {
-          this.getDoctorsByNameandLoc(this.searchDoctorName, this.selectedLocation);
-        } else {
-          this.getDoctorsByLocation(this.selectedLocation);
-        }
-      }
-    } else if (this.selectedSpecialization !== 'default') {
-      if (this.searchDoctorName !== '') {
-        this.getDoctorsByNameandSpec(this.searchDoctorName, this.selectedSpecialization);
-      } else {
-        this.getDoctorsBySpecialization(this.selectedSpecialization);
-      }
-    } else if (this.searchDoctorName !== '') {
+    
+    if (this.selectedLocation !== 'default' && this.selectedSpecialization !== 'default' && this.searchDoctorName===''){
+      this.getDoctorsByLocandSpec(this.selectedLocation,this.selectedSpecialization);
+    }
+
+    else if(this.selectedLocation !== 'default' && this.selectedSpecialization === 'default' && this.searchDoctorName===''){
+      this.getDoctorsByLocation(this.selectedLocation);
+    }
+
+    else if(this.selectedLocation === 'default' && this.selectedSpecialization === 'default' && this.searchDoctorName!==''){
       this.getDoctorsByName(this.searchDoctorName);
     }
+    else if(this.selectedLocation === 'default' && this.selectedSpecialization !== 'default' && this.searchDoctorName===''){
+      this.getDoctorsBySpecialization(this.selectedSpecialization);
+    }
+    else if(this.selectedLocation === 'default' && this.selectedSpecialization !== 'default' && this.searchDoctorName!==''){
+      this.getDoctorsByNameandSpec(this.searchDoctorName,this.selectedSpecialization);
+    }
+    else if(this.selectedLocation !== 'default' && this.selectedSpecialization === 'default' && this.searchDoctorName!==''){
+      this.getDoctorsByNameandLoc(this.searchDoctorName,this.selectedLocation);
+    }
+    else if (this.selectedLocation !== 'default' && this.selectedSpecialization !== 'default' && this.searchDoctorName!==' '){
+      this.getDoctorsByNameLocSpec(this.searchDoctorName,this.selectedLocation, this.selectedSpecialization)
+    }
+
+
   }
+  
+  
   
   
 
@@ -81,6 +107,7 @@ export class UserbodyComponent implements OnInit {
   
 
 // ...
+
 
 getDoctorsByName(name: string) {
   this.service.getDoctorByName(name).subscribe(response => {
@@ -106,8 +133,8 @@ getDoctorsByName(name: string) {
   });
 }
 
-getDoctorsByLocation(specialization: string) {
-  this.service.getDoctorBySpecialization(specialization).subscribe(response => {
+getDoctorsByLocation(location: string) {
+  this.service.getDoctorByLocation(location).subscribe(response => {
     console.log(response);
     // Clear the previous search results
     this.doctors = [];
@@ -268,9 +295,58 @@ getDoctorsByNameLocSpec(doctorname:string,location:string,specialization: string
 
 }
 
-// ...
-bookAppointment() {
-  throw new Error('Function not implemented.');
-}
-}
 
+// Appointment Service
+bookAppointment(doctor:Doctor,appointmentDate:string,appointmentTime:string){
+
+  
+  var dateObj = new Date(appointmentDate);
+  var formattedDate = dateObj.toISOString().split('T')[0]; 
+  // var appDate = new Date(formattedDate)
+
+  // console.log(appDate);
+
+  this.appointmentRequest = new AppointmentRequest();
+  this.appointmentRequest.appointmentDate = formattedDate;
+  this.appointmentRequest.appointmentTime = appointmentTime;
+  this.appointmentRequest.doctorId=doctor.doctorId;
+  console.log(this.appointmentRequest);
+
+
+
+  // this.appointment = new Appointment();
+  // this.appointment.appointmentId=0;
+  // this.appointment.appointmentDate=this.appointmentDate;
+  // this.appointment.appointmentTime=this.appointmentTime;
+  // this.appointment.doctorId=this.doctor.doctorId;
+  // this.appointment.doctorName=this.doctor.doctorName;
+  // this.appointment.doctorLocation=this.doctor.doctorLocation;
+  // this.appointment.doctorSpecialization=this.doctor.doctorSpecialization;
+  // console.log(this.appointment);
+
+
+  this.service.addAppointment(this.appointmentRequest)
+  .subscribe(
+    response => {
+      // Handle the API response
+      console.log('Appointment booked successfully!');
+    },
+    error => {
+      console.error('Failed to book the appointment:', error);
+    }
+  );
+
+
+}
+// formatAppointmentDate(): string {
+//   return this.datePipe.transform(this.appointmentDate, 'yyyy-MM-dd') || '';
+// }
+
+// formatAppointmentTime(): string {
+//   return this.datePipe.transform(this.appointmentTime, 'HH:mm:ss') || '';
+// }
+
+
+
+
+}

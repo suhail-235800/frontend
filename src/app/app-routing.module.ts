@@ -1,4 +1,4 @@
-
+import { RatereviwComponent } from './ratereviw/ratereviw.component';
 import { AdminhomrComponent } from './adminhomr/adminhomr.component';
 import { RegisterComponent } from './register/register.component';
 import { LandingComponent } from './landing/landing.component';
@@ -10,6 +10,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserhomeComponent } from './userhome/userhome.component';
 import { ServicesComponent } from './services/services.component';
 
+
+
 const routes: Routes = [
   {path:'',redirectTo:'/landing',pathMatch:'full'},
   { path: 'userhome', component: UserhomeComponent },
@@ -20,6 +22,7 @@ const routes: Routes = [
   { path: 'landing', component: LandingComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'adminhome', component: AdminhomrComponent },
+  { path: 'ratereview', component: RatereviwComponent },
 
   
 ];

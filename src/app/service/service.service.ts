@@ -1,7 +1,11 @@
-import { Doctor } from './../domain/Doctor';
+import { AppointmentRequest } from './../domain/AppointmentRequest';
+import { Appointment } from '../domain/Appointment';
+import { LoginRequest } from '../domain/LoginRequest';
+import { Doctor } from '../domain/Doctor';
 import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Rating } from '../domain/Rating';
 
 
 
@@ -12,6 +16,13 @@ export class ServiceService {
 
 
   constructor(private Httpclient: HttpClient) { }
+
+  //security-service
+
+  login(loginRequest:LoginRequest):Observable<any>{
+    const url= `http://localhost:8300/api/auth/authenticate`;
+    return this.Httpclient.post(url,loginRequest);
+  }
 
 
   //admin-service
@@ -55,5 +66,38 @@ export class ServiceService {
 
   //appointment-service
 
+  addAppointment(appointment:AppointmentRequest):Observable<any>{
+    const url = `http://localhost:8100/api/v1/appointments`;
+    return this.Httpclient.post(url,appointment); 
+  }
+
+  getAppointment():Observable<any>{
+    return this.Httpclient.get<Appointment[]>(`http://localhost:8100/api/v1/appointments`);
+  }
+
+  getAppointmentByUserId(userId:number){
+    return this.Httpclient.get(`http://localhost:8100/api/v1/appointments/userId/${userId}`);
+  }
+  getAppointmentByDoctorName(doctorName:string){
+    return this.Httpclient.get(`http://localhost:8100/api/v1/appointments/doctorName/${doctorName}`);
+  }
+
+
+
+  //rating-service
+
+
+  addRating(rating:Rating):Observable<any>{
+    const url = `http://localhost:8200/api/v1/ratings`;
+    return this.Httpclient.post(url,rating);
+  }
+
+  getRating():Observable<any>{
+    return this.Httpclient.get<Rating[]>(`http://localhost:8200/api/v1/ratings`);
+  }
+
+  getRatingByUserId(userId:number):Observable<any>{
+    return this.Httpclient.get<Rating[]>(`http://localhost:8200/api/v1/ratings/userid/${userId}`);
+  }
 
 }

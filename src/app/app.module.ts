@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbaradminComponent } from './navbaradmin/navbaradmin.component';
 import { SidebaradminComponent } from './sidebaradmin/sidebaradmin.component';
+import { RatereviwComponent } from './ratereviw/ratereviw.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SidebaradminComponent } from './sidebaradmin/sidebaradmin.component';
     UserbodyComponent,
     UserhomeComponent,
     NavbaradminComponent,
-    SidebaradminComponent
+    SidebaradminComponent,
+    RatereviwComponent
   ],
   imports: [
     BrowserModule,
