@@ -21,6 +21,8 @@
 
     doctorId:number;
     doctorName:string;
+    doctorSpecialization:string;
+    doctorLocation:string;
 
     appointmentId:number;
     appointmentDate:string;
@@ -36,6 +38,8 @@
 
         this.doctorId=0;
         this.doctorName='';
+        this.doctorSpecialization='';
+        this.doctorLocation='';
 
         this.appointmentId=0;
         this.appointmentTime=''

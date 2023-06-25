@@ -1,3 +1,4 @@
+import { RatingRequest } from './../domain/RatingRequest';
 import { AppointmentRequest } from './../domain/AppointmentRequest';
 import { Appointment } from '../domain/Appointment';
 import { LoginRequest } from '../domain/LoginRequest';
@@ -87,9 +88,9 @@ export class ServiceService {
   //rating-service
 
 
-  addRating(rating:Rating):Observable<any>{
+  addRating(ratingrequest:RatingRequest):Observable<any>{
     const url = `http://localhost:8200/api/v1/ratings`;
-    return this.Httpclient.post(url,rating);
+    return this.Httpclient.post(url,ratingrequest);
   }
 
   getRating():Observable<any>{
