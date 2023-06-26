@@ -1,17 +1,9 @@
-
-
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from './../service/service.service';
-
-
-// import { DatePipe } from '@angular/common';
 
 import { Doctor } from '../domain/Doctor';
 import { AppointmentRequest } from '../domain/AppointmentRequest';
 import { Appointment } from '../domain/Appointment';
-
-
-
 
 @Component({
   selector: 'app-userbody',

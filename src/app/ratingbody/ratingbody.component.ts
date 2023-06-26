@@ -57,15 +57,14 @@ export class RatingbodyComponent {
     this.show = false;
   }
 
-  submitRating(appointment: any) {
+  submitRating(appointment: any,rating: any,review:any) {
     // Access the rating value and review text from the rating object
-    const ratingValue = this.rating.rating;
-    const reviewText = this.rating.review;
+    
 
     this.ratingrequest = new RatingRequest();
 
-    this.ratingrequest.rating= Number(ratingValue);
-    this.ratingrequest.review= reviewText;
+    this.ratingrequest.rating= Number(rating);
+    this.ratingrequest.review= review;
     this.ratingrequest.appointmentId = appointment.appointmentId;
 
     console.log(this.ratingrequest);
