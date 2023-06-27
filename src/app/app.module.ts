@@ -22,6 +22,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbaradminComponent } from './navbaradmin/navbaradmin.component';
 import { SidebaradminComponent } from './sidebaradmin/sidebaradmin.component';
 import { RatereviwComponent } from './ratereviw/ratereviw.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'; 
+import { ToastrModule } from 'ngx-toastr';
+import { MyappointmentsComponent } from './myappointments/myappointments.component';
+import { MyratingsComponent } from './myratings/myratings.component';
 
 @NgModule({
   declarations: [
@@ -42,14 +47,20 @@ import { RatereviwComponent } from './ratereviw/ratereviw.component';
     UserhomeComponent,
     NavbaradminComponent,
     SidebaradminComponent,
-    RatereviwComponent
+    RatereviwComponent,
+    MyappointmentsComponent,
+    MyratingsComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

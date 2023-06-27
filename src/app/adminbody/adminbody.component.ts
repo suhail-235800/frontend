@@ -3,6 +3,7 @@ import { ServiceService } from './../service/service.service';
 import { Doctor } from '../domain/Doctor';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 
+
 @Component({
   selector: 'app-adminbody',
   templateUrl: './adminbody.component.html',
@@ -53,10 +54,11 @@ export class AdminbodyComponent {
 
       this.service.addDoctor(this.newDoctor).subscribe(data => {
         console.log(data);
-        alert("Doctor Added");
+        
         doctorForm.resetForm();
         window.location.reload();
       });
+
     }
   }
 

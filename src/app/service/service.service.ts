@@ -65,6 +65,9 @@ export class ServiceService {
     return this.Httpclient.get(`http://localhost:8000/api/v1/admin/searchnamelocspec/${doctorName}/${doctorLocation}/${doctorSpecialization}`);
   }
 
+  getDoctorByKeyword(searchkeyword:string){
+    return this.Httpclient.get(`http://localhost:8000/api/v1/admin/searchkeyword/${searchkeyword}`);
+  }
   //appointment-service
 
   addAppointment(appointment:AppointmentRequest):Observable<any>{

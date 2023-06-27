@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserhomeComponent } from './userhome/userhome.component';
 import { ServicesComponent } from './services/services.component';
+import { MyappointmentsComponent } from './myappointments/myappointments.component';
 
 
 
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'adminhome', component: AdminhomrComponent },
   { path: 'ratereview', component: RatereviwComponent },
-
+  { path: 'myappointment', component: MyappointmentsComponent}
   
 ];
 

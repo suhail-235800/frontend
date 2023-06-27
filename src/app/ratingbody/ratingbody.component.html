@@ -1,5 +1,6 @@
 <link href="ratingbody.component.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
 
 <div class="homebody">
   <div class="row align-items-start p-3">
@@ -42,10 +43,28 @@
           <input type="text" class="form-control" readonly [(ngModel)]="appointment.appointmentTime">
         </div>
       </div>
+      <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Open My Modal</button>
+
+      <ng-template #mymodal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Here I am!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+        </div>
+      </ng-template> -->
+
+      
       <div class="col align-self-center">
         <div class="d-flex justify-content-center">
           <button type="button" class="btn btn-success" (click)="openpopup(i)">Rate</button>
-        </div>
+        </div>  
       </div>
       <div class="overlay" *ngIf="show && selectedAppointmentIndex === i">
         <div class="content">

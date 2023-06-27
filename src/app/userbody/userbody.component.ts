@@ -61,7 +61,7 @@ export class UserbodyComponent implements OnInit {
     }
 
     else if(this.selectedLocation === 'default' && this.selectedSpecialization === 'default' && this.searchDoctorName!==''){
-      this.getDoctorsByName(this.searchDoctorName);
+      this.getDoctorBySearchKeyword(this.searchDoctorName);
     }
     else if(this.selectedLocation === 'default' && this.selectedSpecialization !== 'default' && this.searchDoctorName===''){
       this.getDoctorsBySpecialization(this.selectedSpecialization);
@@ -96,6 +96,22 @@ export class UserbodyComponent implements OnInit {
 
 // ...
 
+getDoctorBySearchKeyword(searchKeyword: string){
+  this.service.getDoctorByKeyword(searchKeyword).subscribe(response =>{
+    this.posts = response;
+    this.doctors = [];
+    for (let i = 0; i < this.posts.length; i++) {
+      this.doctor = new Doctor();
+      this.doctor.doctorId = this.posts[i]['doctorId'];
+      this.doctor.doctorName = this.posts[i]['doctorName'];
+      this.doctor.doctorSpecialization = this.posts[i]['doctorSpecialization'];
+      this.doctor.doctorLocation = this.posts[i]['doctorLocation'];
+      this.doctor.doctorRating = this.posts[i]['doctorRating'];
+      this.doctors.push(this.doctor);
+    }
+  }
+    )
+}
 
 getDoctorsByName(name: string) {
   this.service.getDoctorByName(name).subscribe(response => {

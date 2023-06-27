@@ -3,6 +3,7 @@ import { Appointment } from './../domain/Appointment';
 import { Component } from '@angular/core';
 import { ServiceService } from '../service/service.service';
 import { RatingRequest } from '../domain/RatingRequest';
+// import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-ratingbody',
@@ -10,6 +11,10 @@ import { RatingRequest } from '../domain/RatingRequest';
   styleUrls: ['./ratingbody.component.css']
 })
 export class RatingbodyComponent {
+  // title = 'ng-bootstrap-modal-demo';
+  // closeResult: string;
+  // modalOptions:NgbModalOptions;
+
   appointments: any;
   userId: number=0;
   doctorName: string='';
@@ -20,7 +25,12 @@ export class RatingbodyComponent {
   ratingrequest:RatingRequest = new RatingRequest();
 
 
-  constructor(private service: ServiceService) { }
+  constructor(private service: ServiceService) {
+    // this.modalOptions = {
+    //   backdrop:'static',
+    //   backdropClass:'customBackdrop'
+    // }
+   }
 
   ngOnInit(): void {
 
@@ -29,6 +39,24 @@ export class RatingbodyComponent {
       this.appointments = response;
     });
   }
+
+  // open(content:any) {
+  //   this.modalService.open(content, this.modalOptions).result.then((result) => {
+  //     this.closeResult = `Closed with: ${result}`;
+  //   }, (reason) => {
+  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  //   });
+  // }
+
+  // private getDismissReason(reason: any): string {
+  //   if (reason === ModalDismissReasons.ESC) {
+  //     return 'by pressing ESC';
+  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+  //     return 'by clicking on a backdrop';
+  //   } else {
+  //     return  `with: ${reason}`;
+  //   }
+  // }
 
   searchDoctors() {
     this.service.getAppointmentByDoctorName(this.searchDoctorName).subscribe(response => {
